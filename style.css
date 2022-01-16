@@ -1,0 +1,15 @@
+main {
+    display: flex;
+    justify-content: center;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(16, 16px);
+    grid-template-rows: repeat(16, 16px);
+}
+
+.grid-item {
+    border: 1px solid black;
+    margin: 1px;
+}
