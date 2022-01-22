@@ -16,14 +16,27 @@
         <h1>Etch-a-Sketch</h1>
     </header>
     <main>
-        <button id="reset">Reset Drawing</button> <button id=
-        "eraser-mode" class="mode-button">Eraser</button>
-        <button id="rainbow-mode" class="mode-button">Rainbow
-        Mode</button> <button id="color-mode" class=
-        "mode-button">Color Mode</button>
-        <p>Mode: <span id="mode-label">color</span></p><input type=
-        "color" id="color-picker" value="#000000">
         <div id="grid-container"></div>
+        <div id="settings">
+            <button class="setting" id="reset">Reset
+            Drawing</button> <input class="setting" type="color"
+            id="color-picker" value="#000000"> <select id=
+            "mode-select" name="mode" class="setting">
+                <option value="color-mode" selected>
+                    Color Mode
+                </option>
+                <option value="rainbow-mode">
+                    Rainbow Mode
+                </option>
+                <option value="eraser-mode">
+                    Eraser
+                </option>
+            </select>
+            <div id="size-selector" class="setting">
+                <input id="size-range" type="range" min="1" max=
+                "64" value="16"> <span id="size">16 × 16</span>
+            </div>
+        </div>
     </main>
 </body>
 </html>

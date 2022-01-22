@@ -1,3 +1,17 @@
+body {
+    background-color: #F8F8F8;
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+}
+
+header {
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+    margin: 16px auto;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -22,4 +36,31 @@ p {
 .grid-item {
     border-right: 1px solid #EEEEEE;
     border-bottom: 1px solid #EEEEEE;
+}
+
+#settings {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 400px;
+}
+
+.setting {
+    height: 48px;
+    text-align: center;
+}
+
+#size-selector {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+#size-selector input {
+    flex: 1;
 }

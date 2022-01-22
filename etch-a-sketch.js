@@ -17,29 +17,38 @@ colorPicker.addEventListener('change', event => {
   color = hexToHSL(event.target.value);
 });
 
-const gridContainer = document.querySelector('#grid-container');
-drawGrid(gridContainer);
-
 const resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', event => {
-  drawGrid(gridContainer, true);
+  drawGrid(gridContainer);
 });
 
-const modeButtons = document.querySelectorAll('.mode-button');
-modeButtons.forEach(button => button.addEventListener('click', event => {
-  mode = event.target.id;
-  document.querySelector('#mode-label').textContent = mode.split('-')[0];
-}));
-
-function drawGrid(gridContainer, changeSize = false) {
-  let size = 16;
-
-  if (changeSize) {
-    size = parseInt(prompt('What size would you like the new grid to be?', 16));
-    if (isNaN(size)) {
-      size = parseInt(prompt('Please enter a whole number.', 16));
-    }
+const modeSelect = document.querySelector('#mode-select');
+modeSelect.value = 'color-mode';
+modeSelect.addEventListener('input', event => {
+  mode = event.target.value;
+  if (mode === Modes.Color) {
+    colorPicker.style.display = 'block';
+  } else {
+    colorPicker.style.display = 'none';
   }
+});
+
+const sizeRange = document.querySelector('#size-range');
+sizeRange.value = 16;
+const sizeLabel = document.querySelector('#size');
+sizeRange.addEventListener('input', event => {
+  let size = event.target.value;
+  sizeLabel.innerHTML = `${size} &times; ${size}`;
+});
+
+const gridContainer = document.querySelector('#grid-container');
+drawGrid(gridContainer);
+sizeRange.addEventListener('change', event => {
+  drawGrid(gridContainer);
+});
+
+function drawGrid(gridContainer) {
+  let size = parseInt(sizeRange.value);
 
   gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
@@ -65,6 +74,7 @@ function drawGrid(gridContainer, changeSize = false) {
 
     switch (mode) {
       case Modes.Color:
+        color = hexToHSL(colorPicker.value);
         colorString = `hsl(${color.h}, ${color.s}%, ${color.l}%)`;
         borderColorString = colorString;
         break;
@@ -80,7 +90,6 @@ function drawGrid(gridContainer, changeSize = false) {
         colorString = `hsl(${color.h}, ${color.s}%, ${color.l}%)`;
         borderColorString = colorString;
         color.h += 10;
-        colorPicker.value = HSLToHex(color);
     }
 
     event.target.style.backgroundColor = colorString;
